@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style>
+      .videoPlayer {
+        cursor: pointer;
+        touch-action: pan-down;
+      }
+      .iconHolder {
+        width: 1920px;
+        height: 900px;
+        margin-top: 200px;
+        margin-bottom: 0px;
+      }
+      /* div.clickEffect{
+      position:fixed;
+      box-sizing:border-box;
+      border-style:solid;
+      border-color:#000000;
+      border-radius:50%;
+      animation:clickEffect 0.4s ease-out;
+      z-index:99999;
+      }
+      @keyframes clickEffect{
+        0%{
+          opacity:1;
+          width:0.5em; height:0.5em;
+          margin:-0.25em;
+          border-width:0.5rem;
+        }
+        100%{
+          opacity:0.2;
+          width:15em; height:15em;
+          margin:-7.5em;
+          border-width:0.03rem;
+        }
+      } */
+    </style>
+  </head>
+  <body>
+    <button onclick="clickHandeller()">
+      <div class="iconHolder" id="iconDiv" style="display: none">
+        <img width="600px" height="600px" src="icon.png" alt="" />
+      </div>
+      <div id="videoDiv">
+        <video
+          class="videoPlayer"
+          loop
+          id="homevideo"
+          width="1920px"
+          height="900px"
+          autoplay
+          onended="run()"
+        >
+          <source id="firstVideo" src="add1.mp4" type="video/mp4" />
+          <!-- <source src="part2.mp4" type='video/mp4'/> -->
+        </video>
+      </div>
+    </button>
+    <script>
+      let secondVideo = 1;
+      function clickHandeller(e) {
+        let video = document.getElementById("homevideo");
+        let source = document.getElementById("firstVideo");
+        let iconDiv = document.getElementById("iconDiv");
+        let videoDiv = document.getElementById("videoDiv");
+
+        if (secondVideo == 1) {
+          source.setAttribute("src", "add2.mp4");
+          secondVideo += 1;
+        } else if (secondVideo == 2) {
+          source.setAttribute("src", "add3.mp4");
+          secondVideo += 1;
+        } else if (secondVideo == 3) {
+          iconDiv.style.display = "block";
+          videoDiv.style.display = "none";
+          secondVideo = 1;
+        }
+
+        video.load();
+        video.play();
+      }
+    //   function clickEffect(e){
+    //   var d=document.createElement("div");
+    //   d.className="clickEffect";
+    //   d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+    //   document.body.appendChild(d);
+    //   d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
+    // }
+    document.addEventListener('click',clickEffect);
+    </script>
+  </body>
+</html>
